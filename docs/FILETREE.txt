@@ -1,20 +1,13 @@
-.gitignore
-Konstellation_Publisher.pyw
-README.md
-Start_Konstellation_Publisher.bat
-VERSION
-deploy_remote.py
-docs/FILETREE.txt
-docs/PLAN_8_CHANTIERS_FR.md
-docs/VALIDATION_0_2_ALPHA1_FR.md
-docs/VALIDATION_0_2_ALPHA2_FR.md
-konstellation_publisher.config.example.json
-publisher_bundle.py
-publisher_safety.py
-publisher_transaction.py
-reports/.gitkeep
-templates/Dockerfile
-templates/docker-compose.yml
-tests/test_bundle.py
-tests/test_safety.py
-tests/test_transaction.py
+Konstellation_Publisher/ (code uniquement)
+├── Konstellation_Publisher.pyw
+├── publisher_safety.py
+├── deploy_remote.py (verification, deploiement DESACTIVE)
+├── Start_Konstellation_Publisher.bat
+├── konstellation_publisher.config.example.json
+├── VERSION
+├── README.md
+├── templates/{Dockerfile,docker-compose.yml}
+├── tests/test_safety.py
+└── docs/VALIDATION_0_2_ALPHA1_FR.md
+
+Non livres volontairement : packages, rapports historiques, .git, configuration privee, corpus.

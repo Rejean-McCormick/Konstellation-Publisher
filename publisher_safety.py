@@ -116,4 +116,4 @@ def assert_no_unqualified_content(pack_file: str | None, lenses_dir: str | None)
 
 
 def assert_live_deploy_permitted() -> None:
-    raise PublicationBlocked('Déploiement public désactivé dans 0.2.0-alpha.2: autorisation C1/C2/C3 et staging/rollback VPS non qualifiés. Aucun SSH/Docker/Traefik exécuté.')
+    raise PublicationBlocked('Déploiement public désactivé dans 0.2.0-alpha.1: autorisation C1/C2/C3, readiness et rollback non qualifiés. Aucun SSH/Docker/Traefik exécuté.')

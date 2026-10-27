@@ -15,7 +15,6 @@ import tempfile
 import threading
 import urllib.request
 import zipfile
-from publisher_bundle import prepare_bundle
 from publisher_safety import (audit_checkout, build_code_tar as build_safe_code_tar,
     assert_no_unqualified_content, assert_live_deploy_permitted, PublicationBlocked)
 
@@ -31,7 +30,6 @@ REPORTS_DIR = APP_DIR / "reports"
 PACKAGES_DIR = APP_DIR / "packages"
 TEMPLATES_DIR = APP_DIR / "templates"
 REMOTE_SCRIPT = APP_DIR / "deploy_remote.py"
-TRANSACTION_SCRIPT = APP_DIR / "publisher_transaction.py"
 
 
 def load_config():
@@ -182,7 +180,6 @@ class PublisherApp(tk.Tk):
             ("1. Vérifier Konstellation", self.local_check),
             ("2. Vérifier le VPS", self.server_check),
             ("3. Préparer le paquet", self.prepare_package),
-            ("Simulation rollback (locale)", self.simulate_rollback),
             ("4. Publier (bloqué — alpha)", self.publish),
             ("5. Vérifier en ligne", self.verify_online),
         ]
@@ -363,31 +360,48 @@ class PublisherApp(tk.Tk):
         self._local_check()
         PACKAGES_DIR.mkdir(parents=True, exist_ok=True)
         stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
-        bundle = PACKAGES_DIR / f"konstellation-publish-{stamp}.zip"
-        result = prepare_bundle(
-            checkout=Path(self.cfg["local"]["konstellation_root"]),
-            project=APP_DIR, target=bundle, release_id=stamp,
-            pack_file=self.cfg["local"].get("pack_file", "").strip(),
-            lenses_dir=self.cfg["local"].get("lenses_dir", "").strip(),
-            semantik_enabled=bool(self.cfg["runtime"].get("semantik_enabled")),
-        )
-        self.last_package = bundle
-        self.log(f"Paquet prêt : {bundle}")
-        self.log(f"SHA256 : {result['sha256']}")
-        self._write_report("prepare", "Réussi", [f"Paquet: {bundle}", f"SHA256: {result['sha256']}"])
-
-    def simulate_rollback(self):
-        """Entirely local, temporary route-file simulation; never connects to VPS."""
-        def simulate():
-            cp = run_process([sys.executable, str(TRANSACTION_SCRIPT), "--simulate", "--fail", "public"], timeout=30)
-            if cp.returncode != 0:
-                raise RuntimeError(f"Simulation échouée: {cp.stderr}")
-            result = json.loads(cp.stdout)
-            if result.get("phase") != "ROLLED_BACK" or result.get("active") != "previous-release":
-                raise RuntimeError("Simulation n'a pas confirmé la restauration du trafic précédent")
-            self.log("SIMULATION OK — panne après bascule, ancien service restauré.")
-            self.log("Aucun SSH/Docker/Traefik contacté.")
-        self.run_bg("Simulation locale du rollback…", simulate)
+        work = Path(tempfile.mkdtemp(prefix="konstellation-publish-"))
+        try:
+            self.log("Création de code.tar.gz…")
+            build_code_tar(Path(self.cfg["local"]["konstellation_root"]), work / "code.tar.gz")
+            pack_text = self.cfg["local"].get("pack_file", "").strip()
+            lens_text = self.cfg["local"].get("lenses_dir", "").strip()
+            self.log("Création de content.tar.gz…")
+            build_content_tar(
+                Path(pack_text) if pack_text else None,
+                Path(lens_text) if lens_text else None,
+                work / "content.tar.gz",
+            )
+            runtime = work / "runtime"
+            runtime.mkdir()
+            for name in ("Dockerfile", "docker-compose.yml"):
+                shutil.copy2(TEMPLATES_DIR / name, runtime / name)
+            shutil.copy2(REMOTE_SCRIPT, work / "deploy_remote.py")
+            manifest = {
+                "schema": "konstellation-publisher/v2",
+                "deployment_profile": "public",
+                "content_authorization": "NOT_VERIFIED",
+                "release_id": stamp,
+                "created_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                "code_sha256": sha256(work / "code.tar.gz"),
+                "content_sha256": sha256(work / "content.tar.gz"),
+                "pack_included": bool(pack_text),
+                "lenses_included": bool(lens_text),
+                "semantik_enabled": bool(self.cfg["runtime"].get("semantik_enabled")),
+            }
+            (work / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            bundle = PACKAGES_DIR / f"konstellation-publish-{stamp}.zip"
+            with zipfile.ZipFile(bundle, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+                for p in work.rglob("*"):
+                    if p.is_file():
+                        zf.write(p, p.relative_to(work).as_posix())
+            self.last_package = bundle
+            digest = sha256(bundle)
+            self.log(f"Paquet prêt : {bundle}")
+            self.log(f"SHA256 : {digest}")
+            self._write_report("prepare", "Réussi", [f"Paquet: {bundle}", f"SHA256: {digest}"])
+        finally:
+            shutil.rmtree(work, ignore_errors=True)
 
     def publish(self):
         # Block before configuration, prompts, SSH or Docker calls.
@@ -494,7 +508,7 @@ class PublisherApp(tk.Tk):
         errors = []
         for url in urls:
             try:
-                req = urllib.request.Request(url, headers={"User-Agent": "Konstellation-Publisher/0.2.0-alpha.2"})
+                req = urllib.request.Request(url, headers={"User-Agent": "Konstellation-Publisher/0.1.3"})
                 with urllib.request.urlopen(req, timeout=30) as resp:
                     code = resp.getcode()
                     body = resp.read(8192)
@@ -533,7 +547,7 @@ class PublisherApp(tk.Tk):
 def self_test():
     required = [
         APP_DIR / "konstellation_publisher.config.example.json", REMOTE_SCRIPT,
-        TEMPLATES_DIR / "Dockerfile", TEMPLATES_DIR / "docker-compose.yml", TRANSACTION_SCRIPT, APP_DIR / "publisher_bundle.py",
+        TEMPLATES_DIR / "Dockerfile", TEMPLATES_DIR / "docker-compose.yml",
     ]
     missing = [str(p) for p in required if not p.exists()]
     if missing:

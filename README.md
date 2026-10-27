@@ -1,43 +1,36 @@
-# Konstellation Publisher 0.2.0-alpha.2 — transaction rehearsal (NO LIVE DEPLOY)
+# Konstellation Publisher — 0.2.0-alpha.1 (safety baseline)
 
-**Complete Publisher code repository, with a local transactional rollback simulator.** The original Konstellation Publisher 0.1.3 path to live Docker / shared Traefik mutation has been **removed from the remote entrypoint**. This release cannot publish remotely. A Python-only simulation does NOT prove the real VPS deployment or C1/C2/C3 authorization.
+**Local packaging and review candidate only. Live public deployment is BLOCKED.**
 
-## Windows — installation and start
+The older 0.1.3 Publisher directly changed a shared Konnaxion Traefik file and could run a Konstellation 1.0 server without selecting its `public` deployment profile. This candidate preserves the desktop interface but refuses remote publication until C1/C2/C3 approval checks and real transactional rollout/rollback are independently implemented and tested.
 
-1. Back up your Publisher code and separately retain your existing private `konstellation_publisher.config.json`.
-2. Extract the files directly into the Publisher code directory (repository root contains `Konstellation_Publisher.pyw`). Do not place files into your corpus directory.
-3. Open `Start_Konstellation_Publisher.bat`.
-4. Select an existing Konstellation **1.x checkout at a matching commit with `package-lock.json`**.
-5. `Vérifier Konstellation` and `Préparer le paquet` work locally. `Simulation rollback (locale)` rehearses a failure after traffic cutover and checks restoration in a **temporary sandbox**.
-6. **Publier** remains blocked before SSH/Docker/Traefik. A prepared ZIP does **not** grant permission to deploy it.
+## Windows start
 
-The previous local `Konstellation-1.0.0-rc.2-LOT1.zip` lacked `package-lock.json`. That checkout must fail closed. Do **not** copy an unrelated lockfile: use a consistent, qualified version.
+1. Back up the old `Konstellation_Publisher` code directory and your private configuration.
+2. Extract this full code repository into the Publisher code folder.
+3. Keep your existing `konstellation_publisher.config.json` outside Git (it is deliberately **not** included). If first launch, the application uses `konstellation_publisher.config.example.json`; save from GUI to create your local config.
+4. Start `Start_Konstellation_Publisher.bat`; choose the Konstellation **1.x** checkout with `package-lock.json`.
+5. **Vérifier Konstellation** and **Préparer le paquet** operate locally (no upload). **Publier** is disabled and cannot contact SSH/Docker/Traefik.
 
-## Test commands
+**Important:** the previously delivered local Konstellation `1.0.0-rc.2-LOT1.zip` does not include `package-lock.json`. This is expected to fail closed. The newer GitHub repository main includes a lockfile, but it must be fetched from the **matching qualified checkout/commit**, not blindly copied from unrelated revisions. The build cannot be qualified until `package.json`, lockfile, source and release gates refer to the same commit.
+
+The bundled Dockerfile requires Node 24.15 and `npm ci`. The Compose template declares the `public` profile and checks `/api/ready`. None of those files is automatically deployed by this alpha.
+
+No private source bundles, unapproved JSON packs or lenses are accepted. Source packaging uses an explicit allowlist; any symlinks and sensitive files under an allowed tree fail closed.
+
+## Validation
 
 ```powershell
 py -3.12 Konstellation_Publisher.pyw --self-test
 py -3.12 -m unittest discover -s tests -v
-py -3.12 publisher_transaction.py --simulate
-py -3.12 publisher_transaction.py --simulate --fail public
 ```
 
-Simulated failure points: `stage`, `candidate`, `switch_before`, `switch_after`, `public`, `restore`, and `restore_probe`. `switch_after` represents an exception after the route changed; tests additionally emulate a `KeyboardInterrupt` before the journal records completion. Any ambiguous or unverifiable rollback becomes `RECOVERY_REQUIRED` and blocks further transactions.
+## Remaining before a deployable release
 
-## Technical boundaries
+- Independently verifiable C1 qualification, C2 approval/scope/revocation, C3 immutable release receipts and exact public corpus classification; never treat JSON validation, a hash, Git visibility or an operator checkbox as authorization.
+- Validate `npm run release:check` and image digest; verify readiness, policies and authorization endpoints with runtime fixtures.
+- Implement and failure-inject transactional candidate staging, traffic cutover, previous image/content/config restoration, rollback and retained backups.
+- Provision Traefik routes without restarting shared Konnaxion infrastructure automatically; verify TLS and traffic controls.
+- Run Windows UI, Docker, VPS staging, rollback and negative E2E tests with operator approval.
 
-- `publisher_bundle.py`: allowlisted local code packaging; returns `konstellation-publisher/v2.1` manifest. The public data archive is empty and publication authorization remains `NOT_VERIFIED`.
-- `deploy_remote.py`: validates full SHA-256 of source archive, empty content archive, runtime Dockerfile and Compose template, deployer and transaction script. Rejects unsafe tar entries, duplicate paths and incompatible schema. **No live deployment methods remain.**
-- `publisher_transaction.py`: implementation-independent journal/lock, readiness before cutover, durable `CUTOVER_INTENT`, post-cutover validation, rollback and recovery. Its only included backend is `SandboxBackend`, which simulates an atomic routing file in an ephemeral directory. Historic terminal journals are archived before a new transaction.
-- `templates/`: public profile explicitly configured; Dockerfile uses `npm ci`; readiness requires `/api/ready`, not merely an open HTTP port.
-
-No SSH credentials, VPS addresses, `.git/`, private reports, old packages, Wikidata dump, content collections or secrets are bundled. Existing data on D: is untouched.
-
-## Still REQUIRED before live publication
-
-1. Independent trustworthy C1 qualification, C2 scoped authorization/revocation and C3 immutable-publication receipts bound to the **exact same** release/data/permissions and issuer trust roots.
-2. Actual Docker **candidate deployment** independent of production traffic, image digests, readiness and policy checks.
-3. Traefik staging/cutover/restore behind a controlled lock without restarting the shared Konnaxion edge; rollback of previous application image, environment, content and route.
-4. Tests with a staging VPS, DNS/TLS, negative failure injection including reboot/power interruption, secret management, and Windows GUI validation.
-
-**Do not use this alpha to replace an operational production deployment tool.** Keep the old version backed up until these gates pass. See `docs/VALIDATION_0_2_ALPHA2_FR.md`.
+The code-only archive intentionally omits the old personal `reports/`, `packages/`, and deployment-specific config. **Do not interpret this snapshot as a production release.**
