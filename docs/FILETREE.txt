@@ -1,0 +1,13 @@
+Konstellation_Publisher/ (code uniquement)
+├── Konstellation_Publisher.pyw
+├── publisher_safety.py
+├── deploy_remote.py (verification, deploiement DESACTIVE)
+├── Start_Konstellation_Publisher.bat
+├── konstellation_publisher.config.example.json
+├── VERSION
+├── README.md
+├── templates/{Dockerfile,docker-compose.yml}
+├── tests/test_safety.py
+└── docs/VALIDATION_0_2_ALPHA1_FR.md
+
+Non livres volontairement : packages, rapports historiques, .git, configuration privee, corpus.

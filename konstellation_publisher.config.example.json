@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "Konstellation Publisher",
+    "version": "0.2.0-alpha.1"
+  },
+  "local": {
+    "konstellation_root": "",
+    "pack_file": "",
+    "lenses_dir": ""
+  },
+  "server": {
+    "host": "",
+    "user": "",
+    "ssh_port": 22,
+    "ssh_key": "",
+    "remote_root": "",
+    "domain": "",
+    "aliases": "",
+    "konnaxion_instance": "",
+    "konnaxion_root": "",
+    "edge_network": ""
+  },
+  "runtime": {
+    "roles": "public",
+    "semantik_enabled": false,
+    "semantik_url": "http://semantik:8766/",
+    "runtime_set_id": "konstellation-fr-2",
+    "capability_profile": "konstellation-explorer-2",
+    "languages": [
+      "fr"
+    ],
+    "sa_gf_contract_version": "1.0",
+    "timeout_ms": 10000,
+    "max_assertions": 200,
+    "anonymous_readonly": false
+  }
+}

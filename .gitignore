@@ -1,0 +1,8 @@
+konstellation_publisher.config.json
+packages/
+reports/*
+!reports/.gitkeep
+__pycache__/
+*.pyc
+.env
+.env.*

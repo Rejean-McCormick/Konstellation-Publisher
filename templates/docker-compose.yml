@@ -1,0 +1,43 @@
+services:
+  app:
+    image: ${KONSTELLATION_IMAGE}
+    restart: unless-stopped
+    environment:
+      HOST: "0.0.0.0"
+      KONSTELLATION_DEPLOYMENT_PROFILE: "public"
+      KONSTELLATION_ANONYMOUS_READONLY: ${KONSTELLATION_ANONYMOUS_READONLY:-false}
+      PORT: "4321"
+      KONSTELLATION_ALLOWED_HOSTS: ${KONSTELLATION_ALLOWED_HOSTS}
+      KONSTELLATION_ROLES: ${KONSTELLATION_ROLES}
+      KONSTELLATION_CURSOR_SECRET: ${KONSTELLATION_CURSOR_SECRET}
+      KONSTELLATION_PACK: ${KONSTELLATION_PACK}
+      KONSTELLATION_LENSES: ${KONSTELLATION_LENSES}
+      KONSTELLATION_SA_CONFIG: ${KONSTELLATION_SA_CONFIG}
+    expose:
+      - "4321"
+    volumes:
+      - ${KONSTELLATION_CONTENT}:/content:ro
+      - ./semantik.json:/runtime/semantik.json:ro
+    networks:
+      internal: {}
+      edge:
+        aliases:
+          - konstellation-app
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:4321/api/ready').then(r=>{if(!r.ok)process.exit(1);r.json().then(x=>process.exit(x.status==='ready'&&x.scopeIndexReady===true&&x.navigationProfileReady===true?0:1)).catch(()=>process.exit(1))}).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 10s
+
+networks:
+  internal:
+    name: konstellation-internal
+    driver: bridge
+  edge:
+    external: true
+    name: ${KONSTELLATION_EDGE_NETWORK}
