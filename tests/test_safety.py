@@ -96,17 +96,29 @@ class SafetyTests(unittest.TestCase):
             d=Path(td)
             make_tgz(d/'code.tar.gz',{'package.json':b'{}'})
             make_tgz(d/'content.tar.gz',{})
-            manifest={'schema':'konstellation-publisher/v2','release_id':'20261027-080600',
+            manifest={'schema':'konstellation-publisher/v2.1','release_id':'20261027-080600',
                       'deployment_profile':'public','pack_included':False,'lenses_included':False,
                       'code_sha256':remote._digest_file(d/'code.tar.gz'),
                       'content_sha256':remote._digest_file(d/'content.tar.gz')}
+            runtime = d/'runtime'
+            runtime.mkdir()
+            (runtime/'Dockerfile').write_text('FROM node:24.15.0\n', encoding='utf-8')
+            (runtime/'docker-compose.yml').write_text('services: {}\n', encoding='utf-8')
+            (d/'deploy_remote.py').write_text('pass\n', encoding='utf-8')
+            (d/'publisher_transaction.py').write_text('pass\n', encoding='utf-8')
+            manifest.update({
+                'content_authorization':'NOT_VERIFIED',
+                'runtime_sha256': {n: remote._digest_file(runtime/n) for n in ('Dockerfile','docker-compose.yml')},
+                'deployer_sha256': remote._digest_file(d/'deploy_remote.py'),
+                'transaction_sha256':remote._digest_file(d/'publisher_transaction.py'),
+            })
             (d/'manifest.json').write_text(json.dumps(manifest))
             result=remote.verify_bundle(d,'20261027-080600')
             self.assertEqual(result['deployment_profile'],'public')
-            with patch.object(remote,'run',side_effect=AssertionError('MUST NOT EXECUTE')):
-                with patch.object(sys,'stdin',io.StringIO(json.dumps({'bundle_dir':str(d),'release_id':'20261027-080600'}))):
-                    with self.assertRaisesRegex(RuntimeError,'PUBLISH_BLOCKED'):
-                        remote.main()
+            self.assertFalse(hasattr(remote, 'run'))
+            with patch.object(sys,'stdin',io.StringIO(json.dumps({'bundle_dir':str(d),'release_id':'20261027-080600'}))):
+                with self.assertRaisesRegex(RuntimeError,'PUBLISH_BLOCKED'):
+                    remote.main()
             (d/'code.tar.gz').write_bytes(b'tampered')
             with self.assertRaisesRegex(RuntimeError,'Empreinte'):
                 remote.verify_bundle(d,'20261027-080600')
@@ -116,10 +128,22 @@ class SafetyTests(unittest.TestCase):
             d=Path(td)
             make_tgz(d/'code.tar.gz',{'../escape':b'a'})
             make_tgz(d/'content.tar.gz',{})
-            manifest={'schema':'konstellation-publisher/v2','release_id':'20261027-080600',
+            manifest={'schema':'konstellation-publisher/v2.1','release_id':'20261027-080600',
                       'deployment_profile':'public','pack_included':False,'lenses_included':False,
                       'code_sha256':remote._digest_file(d/'code.tar.gz'),
                       'content_sha256':remote._digest_file(d/'content.tar.gz')}
+            runtime = d/'runtime'
+            runtime.mkdir()
+            (runtime/'Dockerfile').write_text('FROM node:24.15.0\n', encoding='utf-8')
+            (runtime/'docker-compose.yml').write_text('services: {}\n', encoding='utf-8')
+            (d/'deploy_remote.py').write_text('pass\n', encoding='utf-8')
+            (d/'publisher_transaction.py').write_text('pass\n', encoding='utf-8')
+            manifest.update({
+                'content_authorization':'NOT_VERIFIED',
+                'runtime_sha256': {n: remote._digest_file(runtime/n) for n in ('Dockerfile','docker-compose.yml')},
+                'deployer_sha256': remote._digest_file(d/'deploy_remote.py'),
+                'transaction_sha256':remote._digest_file(d/'publisher_transaction.py'),
+            })
             (d/'manifest.json').write_text(json.dumps(manifest))
             with self.assertRaisesRegex(RuntimeError,'archive interdite'):
                 remote.verify_bundle(d,'20261027-080600')
@@ -133,10 +157,22 @@ class SafetyTests(unittest.TestCase):
             d=Path(td)
             make_tgz(d/'code.tar.gz',{'package.json':b'{}'})
             make_tgz(d/'content.tar.gz',{'pack.json':b'{"private":true}'})
-            manifest={'schema':'konstellation-publisher/v2','release_id':'20261027-080600',
+            manifest={'schema':'konstellation-publisher/v2.1','release_id':'20261027-080600',
                       'deployment_profile':'public','pack_included':False,'lenses_included':False,
                       'code_sha256':remote._digest_file(d/'code.tar.gz'),
                       'content_sha256':remote._digest_file(d/'content.tar.gz')}
+            runtime = d/'runtime'
+            runtime.mkdir()
+            (runtime/'Dockerfile').write_text('FROM node:24.15.0\n', encoding='utf-8')
+            (runtime/'docker-compose.yml').write_text('services: {}\n', encoding='utf-8')
+            (d/'deploy_remote.py').write_text('pass\n', encoding='utf-8')
+            (d/'publisher_transaction.py').write_text('pass\n', encoding='utf-8')
+            manifest.update({
+                'content_authorization':'NOT_VERIFIED',
+                'runtime_sha256': {n: remote._digest_file(runtime/n) for n in ('Dockerfile','docker-compose.yml')},
+                'deployer_sha256': remote._digest_file(d/'deploy_remote.py'),
+                'transaction_sha256':remote._digest_file(d/'publisher_transaction.py'),
+            })
             (d/'manifest.json').write_text(json.dumps(manifest))
             with self.assertRaisesRegex(RuntimeError,'contenu|Contenu'):
                 remote.verify_bundle(d,'20261027-080600')
