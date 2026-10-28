@@ -1,0 +1,345 @@
+[
+  {
+    "github_repo": "Rejean-McCormick/Akor",
+    "github_url": "https://github.com/Rejean-McCormick/Akor",
+    "local_root": "C:\\mycode\\Ekole\\Akor\\Akor",
+    "scope": "PUBLIC",
+    "status": "github_and_local_remote_verified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Arketype",
+    "github_url": "https://github.com/Rejean-McCormick/Arketype",
+    "local_root": "C:\\mycode\\Kristal\\Arketype\\arketype",
+    "scope": "PUBLIC",
+    "status": "github_and_local_remote_verified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Daat",
+    "github_url": "https://github.com/Rejean-McCormick/Daat",
+    "local_root": "C:\\mycode\\Interaction-Kernel\\Daat",
+    "scope": "PUBLIC",
+    "status": "github_and_local_remote_verified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Ekole",
+    "github_url": "https://github.com/Rejean-McCormick/Ekole",
+    "local_root": "C:\\mycode\\Ekole\\ekole",
+    "scope": "PUBLIC",
+    "status": "github_and_local_remote_verified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Ekole-Pastorale",
+    "github_url": "https://github.com/Rejean-McCormick/Ekole-Pastorale",
+    "local_root": "C:\\mycode\\Ekole\\ecole-pastorale",
+    "scope": "PUBLIC",
+    "status": "github_and_local_remote_verified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/EncyKlopedia",
+    "github_url": "https://github.com/Rejean-McCormick/EncyKlopedia",
+    "local_root": "C:\\mycode\\EncyKlopedia\\EncyKlopedia",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/HomePage-initkoa.org",
+    "github_url": "https://github.com/Rejean-McCormick/HomePage-initkoa.org",
+    "local_root": "C:\\mycode\\HomePage\\HomePage",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/initkoa-docs",
+    "github_url": "https://github.com/Rejean-McCormick/initkoa-docs",
+    "local_root": "C:\\mycode\\HomePage\\docs-initkoa-org",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Interaction-Kernel",
+    "github_url": "https://github.com/Rejean-McCormick/Interaction-Kernel",
+    "local_root": "C:\\mycode\\Interaction-Kernel\\interaction_kernel",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/kOA-Digital-Ecosystem",
+    "github_url": "https://github.com/Rejean-McCormick/kOA-Digital-Ecosystem",
+    "local_root": "C:\\mycode\\kOA_Digital_Ecosystem\\kOA_Digital_Ecosystem",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/kOA-Linux-Koali",
+    "github_url": "https://github.com/Rejean-McCormick/kOA-Linux-Koali",
+    "local_root": "C:\\mycode\\kOA-Linux\\koa-linux",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Koali-Control-Panel",
+    "github_url": "https://github.com/Rejean-McCormick/Koali-Control-Panel",
+    "local_root": "C:\\mycode\\kOA-Linux\\Koali-Control-Panel",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Koali-Scenario-Mosaic",
+    "github_url": "https://github.com/Rejean-McCormick/Koali-Scenario-Mosaic",
+    "local_root": "C:\\mycode\\kOA-Linux\\Koali_Scenario_Mosaic",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Koali-Spaces",
+    "github_url": "https://github.com/Rejean-McCormick/Koali-Spaces",
+    "local_root": "C:\\mycode\\kOA-Linux\\koali-spaces",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Kompiler",
+    "github_url": "https://github.com/Rejean-McCormick/Kompiler",
+    "local_root": "C:\\mycode\\Kristal\\Kompiler",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Kompose",
+    "github_url": "https://github.com/Rejean-McCormick/Kompose",
+    "local_root": "C:\\mycode\\Ekole\\Kompose",
+    "scope": "PUBLIC",
+    "status": "github_verified_local_remote_unverified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Konductor",
+    "github_url": "https://github.com/Rejean-McCormick/Konductor",
+    "local_root": "C:\\mycode\\Konductor\\Konductor",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Konfid",
+    "github_url": "https://github.com/Rejean-McCormick/Konfid",
+    "local_root": "C:\\mycode\\Konfid\\konfid",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Konnaxion",
+    "github_url": "https://github.com/Rejean-McCormick/Konnaxion",
+    "local_root": "C:\\mycode\\Konnaxion\\Konnaxion",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Konnaxion-Capsule-Manager",
+    "github_url": "https://github.com/Rejean-McCormick/Konnaxion-Capsule-Manager",
+    "local_root": "C:\\mycode\\Konnaxion\\Konnaxion_Capsule_Manager",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Konnaxion-Worlds",
+    "github_url": "https://github.com/Rejean-McCormick/Konnaxion-Worlds",
+    "local_root": "C:\\mycode\\Konnaxion\\Konnaxion_Worlds",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/KonnaxionDiag",
+    "github_url": "https://github.com/Rejean-McCormick/KonnaxionDiag",
+    "local_root": "C:\\mycode\\Konnaxion\\KonnaxionDiag",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Konstellation",
+    "github_url": "https://github.com/Rejean-McCormick/Konstellation",
+    "local_root": "C:\\mycode\\Konstellation\\Konstellation",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Konstellation-Light",
+    "github_url": "https://github.com/Rejean-McCormick/Konstellation-Light",
+    "local_root": "C:\\mycode\\Konstellation\\Konstellation-Light",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Konstellation-Publisher",
+    "github_url": "https://github.com/Rejean-McCormick/Konstellation-Publisher",
+    "local_root": "C:\\mycode\\Konstellation\\Konstellation-Publisher",
+    "scope": "PUBLIC",
+    "status": "github_and_local_remote_verified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Kontainer",
+    "github_url": "https://github.com/Rejean-McCormick/Kontainer",
+    "local_root": "C:\\mycode\\Kristal\\Kontainer",
+    "scope": "PUBLIC",
+    "status": "github_and_local_remote_verified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Kontexte",
+    "github_url": "https://github.com/Rejean-McCormick/Kontexte",
+    "local_root": "C:\\mycode\\Ekole\\Kontexte",
+    "scope": "PUBLIC",
+    "status": "github_verified_local_remote_unverified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Kristal-Authoring-Kit",
+    "github_url": "https://github.com/Rejean-McCormick/Kristal-Authoring-Kit",
+    "local_root": "C:\\mycode\\Kristal\\Kristal-Authoring-Kit",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Kristal-Framework",
+    "github_url": "https://github.com/Rejean-McCormick/Kristal-Framework",
+    "local_root": "C:\\mycode\\Kristal\\Kristal-Framework",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Kristal-Integration-Pack",
+    "github_url": "https://github.com/Rejean-McCormick/Kristal-Integration-Pack",
+    "local_root": "C:\\mycode\\Kristal\\Kristal-Integration-Pack",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Kristal-Manager",
+    "github_url": "https://github.com/Rejean-McCormick/Kristal-Manager",
+    "local_root": "C:\\mycode\\Kristal\\Kristal-Manager",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/kristal-public",
+    "github_url": "https://github.com/Rejean-McCormick/kristal-public",
+    "local_root": "C:\\mycode\\Kristal\\kristal-public",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/KristalDiag",
+    "github_url": "https://github.com/Rejean-McCormick/KristalDiag",
+    "local_root": "C:\\mycode\\Kristal\\KristalDiag",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/LevelUpDiag-kOA-Linux",
+    "github_url": "https://github.com/Rejean-McCormick/LevelUpDiag-kOA-Linux",
+    "local_root": "C:\\mycode\\kOA-Linux\\LevelUpDiag-Koali",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/LevelUpDiag-Orgo",
+    "github_url": "https://github.com/Rejean-McCormick/LevelUpDiag-Orgo",
+    "local_root": "C:\\mycode\\Orgo\\LevelUpDiag-Orgo",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/LevelUpDiag_SemantiK-Architect",
+    "github_url": "https://github.com/Rejean-McCormick/LevelUpDiag_SemantiK-Architect",
+    "local_root": "C:\\mycode\\SemantiK_Architect\\LevelUpDiag_SemantiK_Architect",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Mediatheque",
+    "github_url": "https://github.com/Rejean-McCormick/Mediatheque",
+    "local_root": "C:\\mycode\\kOA_Mediatheque\\mediatheque",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Mediatheque-blank",
+    "github_url": "https://github.com/Rejean-McCormick/Mediatheque-blank",
+    "local_root": "C:\\mycode\\kOA_Mediatheque\\mediatheque-blank",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/MediKristal",
+    "github_url": "https://github.com/Rejean-McCormick/MediKristal",
+    "local_root": "C:\\mycode\\Kristal\\MediKristal\\MediKristal",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/MediKristal-LevelUpDiag-",
+    "github_url": "https://github.com/Rejean-McCormick/MediKristal-LevelUpDiag-",
+    "local_root": "C:\\mycode\\Kristal\\MediKristal\\LevelUpDiag-MediKristal",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Orgo",
+    "github_url": "https://github.com/Rejean-McCormick/Orgo",
+    "local_root": "C:\\mycode\\Orgo\\Orgo",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Orgo-Worlds",
+    "github_url": "https://github.com/Rejean-McCormick/Orgo-Worlds",
+    "local_root": "C:\\mycode\\Orgo\\Orgo_Worlds",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/SemantiK-Architect",
+    "github_url": "https://github.com/Rejean-McCormick/SemantiK-Architect",
+    "local_root": "C:\\mycode\\SemantiK_Architect\\SemantiK_Architect",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/SemantiK_Runtime_Orchestrator",
+    "github_url": "https://github.com/Rejean-McCormick/SemantiK_Runtime_Orchestrator",
+    "local_root": "C:\\mycode\\SemantiK_Architect\\SemantiK_Runtime_Orchestrator",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/SenTient",
+    "github_url": "https://github.com/Rejean-McCormick/SenTient",
+    "local_root": "C:\\mycode\\SenTient\\SenTient",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Skope",
+    "github_url": "https://github.com/Rejean-McCormick/Skope",
+    "local_root": "C:\\mycode\\Skope\\Skope",
+    "scope": "PUBLIC",
+    "status": "github_and_local_remote_verified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/Spek",
+    "github_url": "https://github.com/Rejean-McCormick/Spek",
+    "local_root": "C:\\mycode\\Spek_Semantic-publishing\\Spek",
+    "scope": "PUBLIC",
+    "status": "github_and_local_remote_verified"
+  },
+  {
+    "github_repo": "Rejean-McCormick/UCKK-Assets",
+    "github_url": "https://github.com/Rejean-McCormick/UCKK-Assets",
+    "local_root": "C:\\mycode\\UCKK\\UCKK_Assets",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  },
+  {
+    "github_repo": "Rejean-McCormick/UCKK-Ops-Console",
+    "github_url": "https://github.com/Rejean-McCormick/UCKK-Ops-Console",
+    "local_root": "C:\\mycode\\UCKK\\UCKK_ops_console",
+    "scope": "PUBLIC",
+    "status": "local_git_marker_seen"
+  }
+]
