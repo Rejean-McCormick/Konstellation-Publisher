@@ -1,0 +1,51 @@
+{
+  "schema": "koa.unesco-mt1-10-repo-handoff/1.0",
+  "repo": "Konstellation-Publisher",
+  "local_path": "C:\\mycode\\Konstellation\\Konstellation-Publisher",
+  "branch": "unesco-mt1-10",
+  "domain_title": "Educational policy",
+  "baseline_concept_count": 41,
+  "wikidata_candidates_are_unreviewed": true,
+  "target_locales": [
+    "en",
+    "fr",
+    "es",
+    "de",
+    "nl",
+    "sv",
+    "da",
+    "no",
+    "nn",
+    "fi",
+    "et",
+    "af",
+    "it",
+    "pt"
+  ],
+  "language_qualification": "NOT_PROVEN_FOR_ALL_14",
+  "semantic_grain": {
+    "one_branch_kristal": true,
+    "articles_are_projections": true,
+    "one_kristal_per_concept": false,
+    "one_kristal_per_language": false
+  },
+  "component_role": "optional_delivery_adapter",
+  "receives": [
+    "externally_approved_immutable_publication"
+  ],
+  "produces": [
+    "controlled_deployment_result"
+  ],
+  "current_gate": "CANDIDATE_INTEGRATION_ONLY",
+  "automatic_exact_match": false,
+  "automatic_canonical_write": false,
+  "public_upload_authorized": false,
+  "public_deployment_authorized": false,
+  "wikipedia_source": {
+    "mode": "LOCAL_SQLITE_AND_COMPRESSED_XML",
+    "path": "D:\\EncyKlopedia\\80_search_indexes\\mediatheque-references\\wikipedia_en.sqlite",
+    "xml_text_extracted": false,
+    "remote_wikipedia_required": false
+  },
+  "immediate_action": "Optional routing only; never treat local build success as public release authorization."
+}

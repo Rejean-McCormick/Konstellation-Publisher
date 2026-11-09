@@ -1,0 +1,20 @@
+{
+  "automatic_canonical_minting": false,
+  "branch": "unesco-mt1-10",
+  "format": "koa.unesco-mt1-10-lot2-repository-status/1.0",
+  "language_runtimes_all_qualified": false,
+  "local_relative_path": "Konstellation/Konstellation-Publisher",
+  "new_executable_tools": [],
+  "notes": [
+    "No public endpoint/write authorized by UNESCO candidate pilot."
+  ],
+  "publication_gates_passed": false,
+  "remote_upload_authorized": false,
+  "repo": "Konstellation-Publisher",
+  "requested_languages": 14,
+  "role": "optional-distribution",
+  "semantic_grain": "ONE_BRANCH_KRISTAL",
+  "source_evidence_approved": false,
+  "status": "INTEGRATION_CANDIDATE_NOT_PRODUCTION",
+  "unesco_seed_concepts": 41
+}
