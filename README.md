@@ -41,3 +41,5 @@ No SSH credentials, VPS addresses, `.git/`, private reports, old packages, Wikid
 4. Tests with a staging VPS, DNS/TLS, negative failure injection including reboot/power interruption, secret management, and Windows GUI validation.
 
 **Do not use this alpha to replace an operational production deployment tool.** Keep the old version backed up until these gates pass. See `docs/VALIDATION_0_2_ALPHA2_FR.md`.
+
+> **Final-system Branch 03 alignment (2026-11-09):** See [the release/distribution/exploration integration note](docs/FINAL_SYSTEM_BRANCH03.md). The seven-owner pipeline is a target with independently gated qualification, permission, packaging and readers. This source snapshot does not authorize public publication or deployment.

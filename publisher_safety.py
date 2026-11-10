@@ -6,6 +6,7 @@ currently wired; a live deployment MUST remain disabled.
 from __future__ import annotations
 
 import hashlib
+import gzip
 import json
 from pathlib import Path
 import tarfile
@@ -104,9 +105,23 @@ def build_code_tar(root: Path, output: Path) -> dict:
     if not all(x.is_file() for x in selected):
         raise PublicationBlocked('Fichier racine requis manquant dans allowlist')
     output.parent.mkdir(parents=True, exist_ok=True)
-    with tarfile.open(output,'w:gz') as tf:
-        for item in sorted(selected,key=lambda f:f.relative_to(root).as_posix()):
-            tf.add(item,arcname=item.relative_to(root).as_posix(),recursive=False)
+    # Reproducible *code* archive: timestamps/uid/gid and gzip metadata do not
+    # depend on which operator's machine packaged the exact same source bytes.
+    # This remains a local candidate bundle, NOT publication authorization.
+    with output.open('wb') as target, gzip.GzipFile(filename='', mode='wb', fileobj=target, mtime=0) as gz:
+        with tarfile.open(fileobj=gz, mode='w', format=tarfile.PAX_FORMAT) as tf:
+            for item in sorted(selected, key=lambda f: f.relative_to(root).as_posix()):
+                rel = item.relative_to(root).as_posix()
+                meta = tarfile.TarInfo(rel)
+                meta.size = item.stat().st_size
+                meta.mtime = 0
+                meta.uid = meta.gid = 0
+                meta.uname = meta.gname = ''
+                # Explicit read-only regular files; executability is provided by
+                # the runtime/scripts, never by an uncontrolled source mode bit.
+                meta.mode = 0o644
+                with item.open('rb') as source:
+                    tf.addfile(meta, fileobj=source)
     return {**summary,'included_files':len(selected),'archive_sha256':digest_file(output)}
 
 

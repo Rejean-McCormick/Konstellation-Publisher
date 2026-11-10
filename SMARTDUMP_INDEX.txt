@@ -1,0 +1,42 @@
+SMART DUMPER INDEX
+==================
+generated_at: 2026-11-09T16:31:21.242164
+source_root: C:\mycode\Konstellation\Konstellation-Publisher
+mode: snapshot
+zip_file: Konstellation-Publisher_Code_snapshot.zip
+embedded_index: SMARTDUMP_INDEX.txt
+file_count: 29
+total_bytes: 116976
+compression: ZIP_DEFLATED level 1
+
+FILES
+-----
+.gitignore	131 bytes
+deploy_remote.py	5430 bytes
+docs/FILETREE.txt	464 bytes
+docs/inventory/README.md	1829 bytes
+docs/inventory/repositories.json	12687 bytes
+docs/inventory/repositories.md	8384 bytes
+docs/PLAN_8_CHANTIERS_FR.md	4768 bytes
+docs/VALIDATION_0_2_ALPHA1_FR.md	775 bytes
+docs/VALIDATION_0_2_ALPHA2_FR.md	2695 bytes
+integrations/unesco-mt1-10/handoff.json	1428 bytes
+integrations/unesco-mt1-10/lot2-status.json	695 bytes
+integrations/unesco-mt1-10/lot3-status.json	1055 bytes
+integrations/unesco-mt1-10/README.md	1798 bytes
+konstellation_publisher.config.example.json	783 bytes
+Konstellation_Publisher.pyw	24699 bytes
+publisher_bundle.py	3112 bytes
+publisher_safety.py	5492 bytes
+publisher_transaction.py	12032 bytes
+README.md	4031 bytes
+reports/.gitkeep	0 bytes
+SOURCE-SHA256.txt	1784 bytes
+Start_Konstellation_Publisher.bat	276 bytes
+templates/docker-compose.yml	1386 bytes
+templates/Dockerfile	429 bytes
+tests/test_bundle.py	2310 bytes
+tests/test_safety.py	10026 bytes
+tests/test_transaction.py	6910 bytes
+tests/test_unesco_mt1_10_handoff.py	1553 bytes
+VERSION	14 bytes

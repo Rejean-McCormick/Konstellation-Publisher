@@ -53,6 +53,27 @@ class SafetyTests(unittest.TestCase):
             self.assertIn('package-lock.json',names)
             self.assertNotIn('reports/old.txt',names)
 
+    def test_code_archive_deterministic_across_paths_and_timestamps(self):
+        with tempfile.TemporaryDirectory() as td:
+            folder = Path(td)
+            a = base_checkout(folder/'checkout-a')
+            b = base_checkout(folder/'checkout-b')
+            # Timestamps are provenance of the workstation, not content input.
+            os.utime(b/'server'/'safe.mjs', (946684800, 946684800))
+            os.utime(b/'package.json', (946684800, 946684800))
+            first = folder/'first.tar.gz'
+            second = folder/'second.tar.gz'
+            digest_a = safety.build_code_tar(a, first)['archive_sha256']
+            digest_b = safety.build_code_tar(b, second)['archive_sha256']
+            self.assertEqual(digest_a, digest_b)
+            self.assertEqual(first.read_bytes(), second.read_bytes())
+            with tarfile.open(first, 'r:gz') as bundle:
+                for member in bundle.getmembers():
+                    self.assertEqual(member.mtime, 0)
+                    self.assertEqual(member.uid, 0)
+                    self.assertEqual(member.gid, 0)
+                    self.assertEqual(member.mode, 0o644)
+
     def test_lockfile_missing_and_mismatch(self):
         with tempfile.TemporaryDirectory() as td:
             base=base_checkout(Path(td))
